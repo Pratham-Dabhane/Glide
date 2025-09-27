@@ -1,0 +1,36 @@
+{
+  "name": "zapier-debugger-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Zapier Debugger & Monitor SaaS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "build": "echo 'No build step needed'",
+    "test": "echo 'Tests not implemented yet'"
+  },
+  "keywords": [
+    "zapier",
+    "monitoring",
+    "saas",
+    "api",
+    "webhooks"
+  ],
+  "author": "Zapier Debugger Team",
+  "license": "MIT",
+  "dependencies": {
+    "@clerk/clerk-sdk-node": "^5.1.6",
+    "@supabase/supabase-js": "^2.38.0",
+    "axios": "^1.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.0",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
