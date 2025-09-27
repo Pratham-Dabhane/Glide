@@ -36,11 +36,10 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: true }))
 
-// Initialize Supabase client
-const supabase = createClient(
-  process.env.SUPABASE_URL || 'https://your-project.supabase.co',
-  process.env.SUPABASE_SERVICE_KEY || 'your-service-key'
-)
+// Initialize Supabase client (support both SERVICE_KEY and SERVICE_ROLE_KEY env names)
+const supabaseUrl = process.env.SUPABASE_URL || 'https://your-project.supabase.co'
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || 'your-service-key'
+const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
 // Initialize services
 const zapierService = new ZapierService()
