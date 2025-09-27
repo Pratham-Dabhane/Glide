@@ -1,6 +1,6 @@
 # Deployment Instructions
 
-This document provides step-by-step instructions for deploying the Zapier Debugger & Monitor application.
+This document provides step-by-step instructions for deploying Glide.
 
 ## Prerequisites
 

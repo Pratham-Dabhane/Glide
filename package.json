@@ -1,7 +1,7 @@
 {
-  "name": "zapier-debugger-monorepo",
+  "name": "glide",
   "version": "1.0.0",
-  "description": "A comprehensive SaaS application for monitoring and debugging Zapier workflows",
+  "description": "Glide — Debug. Monitor. Automate. A micro‑SaaS for workflow monitoring and alerts.",
   "scripts": {
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:frontend": "cd frontend && npm run dev",

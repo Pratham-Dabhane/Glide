@@ -223,19 +223,17 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-            <p className="mt-2 text-gray-600">
-              Monitor your Zapier workflows in real-time
-            </p>
+            <h1 className="text-3xl font-bold" style={{ color: '#111827' }}>Dashboard</h1>
+            <p className="mt-2" style={{ color: '#6B7280' }}>Monitor your workflows in real-time</p>
           </div>
           <Link
             href="/settings"
-            className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+            className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:border-blue-600 hover:text-blue-600"
           >
             <Settings className="h-4 w-4 mr-2" />
             Settings
@@ -338,7 +336,7 @@ export default function DashboardPage() {
           <button
             onClick={handleRefresh}
             disabled={refreshing}
-            className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
+            className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:border-blue-600 hover:text-blue-600 disabled:opacity-50"
           >
             <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? 'animate-spin' : ''}`} />
             {refreshing ? 'Refreshing...' : 'Refresh'}
@@ -347,7 +345,7 @@ export default function DashboardPage() {
           {hasIntegration ? (
             <button
               onClick={handleSync}
-              className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 text-sm font-medium"
+              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
             >
               <Plus className="h-4 w-4 mr-2" />
               Sync from Zapier
@@ -355,7 +353,7 @@ export default function DashboardPage() {
           ) : (
             <Link
               href="/settings"
-              className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 text-sm font-medium"
+              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
             >
               <Settings className="h-4 w-4 mr-2" />
               Setup Zapier API Key

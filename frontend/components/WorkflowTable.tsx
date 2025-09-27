@@ -91,7 +91,7 @@ export default function WorkflowTable({ workflows, onRefresh, loading = false }:
           </p>
           <button
             onClick={onRefresh}
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
           >
             <RefreshCw className="w-4 h-4 mr-2" />
             Refresh Workflows
@@ -106,12 +106,8 @@ export default function WorkflowTable({ workflows, onRefresh, loading = false }:
       <div className="px-4 py-5 sm:px-6 border-b border-gray-200">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg leading-6 font-medium text-gray-900">
-              Workflow Monitor
-            </h3>
-            <p className="mt-1 max-w-2xl text-sm text-gray-500">
-              Real-time status of your Zapier workflows
-            </p>
+            <h3 className="text-lg leading-6 font-medium text-gray-900">Workflow Monitor</h3>
+            <p className="mt-1 max-w-2xl text-sm text-gray-500">Real-time status of your workflows</p>
           </div>
           <button
             onClick={onRefresh}
@@ -187,9 +183,10 @@ export default function WorkflowTable({ workflows, onRefresh, loading = false }:
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
                     <div
-                      className="bg-green-600 h-2 rounded-full"
+                      className="h-2 rounded-full"
                       style={{
-                        width: `${calculateSuccessRate(workflow.success_count, workflow.run_count)}%`
+                        width: `${calculateSuccessRate(workflow.success_count, workflow.run_count)}%`,
+                        backgroundColor: '#10B981'
                       }}
                     ></div>
                   </div>

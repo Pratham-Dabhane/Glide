@@ -209,8 +209,8 @@ export default function SettingsPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Integration Settings</h1>
-        <p className="mt-2 text-gray-600">
+        <h1 className="text-3xl font-bold" style={{ color: '#111827' }}>Integration Settings</h1>
+        <p className="mt-2" style={{ color: '#6B7280' }}>
           Configure your API keys and notification settings
         </p>
       </div>
@@ -235,7 +235,7 @@ export default function SettingsPage() {
                   href="https://zapier.com/app/developer" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-indigo-600 hover:text-indigo-500 underline"
+                  className="text-blue-600 hover:text-blue-500 underline"
                 >
                   Zapier Developer account
                 </a>.
@@ -251,7 +251,7 @@ export default function SettingsPage() {
                   type="password"
                   name="zapier_api_key"
                   id="zapier_api_key"
-                  className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                   placeholder="Enter your Zapier API key"
                   value={integration.zapier_api_key}
                   onChange={(e) => setIntegration(prev => ({ ...prev, zapier_api_key: e.target.value }))}
@@ -261,7 +261,7 @@ export default function SettingsPage() {
                 type="button"
                 onClick={testZapierConnection}
                 disabled={testing.zapier || !integration.zapier_api_key}
-                className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+                className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:border-blue-600 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
               >
                 <TestTube className={`h-4 w-4 mr-1 ${testing.zapier ? 'animate-pulse' : ''}`} />
                 {testing.zapier ? 'Testing...' : 'Test'}
@@ -288,7 +288,7 @@ export default function SettingsPage() {
                   href="https://api.slack.com/incoming-webhooks" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-indigo-600 hover:text-indigo-500 underline"
+                  className="text-blue-600 hover:text-blue-500 underline"
                 >
                   Slack workspace settings
                 </a>.
@@ -304,7 +304,7 @@ export default function SettingsPage() {
                   type="url"
                   name="slack_webhook_url"
                   id="slack_webhook_url"
-                  className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                   placeholder="https://hooks.slack.com/services/..."
                   value={integration.slack_webhook_url}
                   onChange={(e) => setIntegration(prev => ({ ...prev, slack_webhook_url: e.target.value }))}
@@ -314,7 +314,7 @@ export default function SettingsPage() {
                 type="button"
                 onClick={testSlackWebhook}
                 disabled={testing.slack || !integration.slack_webhook_url}
-                className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+                className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:border-blue-600 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
               >
                 <TestTube className={`h-4 w-4 mr-1 ${testing.slack ? 'animate-pulse' : ''}`} />
                 {testing.slack ? 'Testing...' : 'Test'}
@@ -348,7 +348,7 @@ export default function SettingsPage() {
                 type="email"
                 name="alert_email"
                 id="alert_email"
-                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 placeholder="your-email@example.com"
                 value={integration.alert_email}
                 onChange={(e) => setIntegration(prev => ({ ...prev, alert_email: e.target.value }))}
@@ -362,7 +362,7 @@ export default function SettingsPage() {
           <button
             type="submit"
             disabled={saving}
-            className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+            className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
           >
             <Save className={`h-4 w-4 mr-2 ${saving ? 'animate-pulse' : ''}`} />
             {saving ? 'Saving...' : 'Save Settings'}
@@ -376,14 +376,14 @@ export default function SettingsPage() {
         <div className="space-y-3 text-sm text-gray-600">
           <div>
             <strong>Zapier API Key:</strong> Visit your{' '}
-            <a href="https://zapier.com/app/developer" target="_blank" rel="noopener noreferrer" className="text-indigo-600 underline">
+            <a href="https://zapier.com/app/developer" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
               Zapier Developer Dashboard
             </a>{' '}
             to generate an API key.
           </div>
           <div>
             <strong>Slack Webhook:</strong> Create an incoming webhook in your{' '}
-            <a href="https://api.slack.com/incoming-webhooks" target="_blank" rel="noopener noreferrer" className="text-indigo-600 underline">
+            <a href="https://api.slack.com/incoming-webhooks" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
               Slack workspace
             </a>{' '}
             to receive notifications.

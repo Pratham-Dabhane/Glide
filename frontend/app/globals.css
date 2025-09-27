@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 :root {
+  /* Glide palette */
+  --glide-bg: #F9FAFB;
+  --glide-card: #FFFFFF;
+  --glide-text: #111827;
+  --glide-muted: #6B7280;
+  --glide-border: #E5E7EB;
+  --glide-blue: #2563EB;
+  --glide-blue-hover: #1D4ED8;
+  --glide-green: #10B981;
+  --glide-amber: #F59E0B;
+  --glide-red: #EF4444;
+
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
   --primary: 222.2 47.4% 11.2%;
@@ -17,7 +29,10 @@
   --destructive-foreground: 210 40% 98%;
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
-  --ring: 222.2 84% 4.9%;
+  /* Brand-focus ring should use Glide blue */
+  --ring: 217.2 91.2% 59.8%;
+  /* Align token primary to Glide blue for token-based components */
+  --primary: 217.2 91.2% 59.8%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -36,7 +51,8 @@
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    /* Keep ring on brand in dark mode for consistent focus styling */
+    --ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -45,6 +61,23 @@
 }
 
 body {
-  color: hsl(var(--foreground));
-  background: hsl(var(--background));
+  color: var(--glide-text);
+  background: var(--glide-bg);
 }
+
+/* Buttons */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md text-white;
+  background-color: var(--glide-blue);
+}
+.btn-primary:hover { background-color: var(--glide-blue-hover); }
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md text-gray-700 border border-gray-300 bg-white;
+}
+.btn-secondary:hover { border-color: var(--glide-blue); color: var(--glide-text); }
+
+/* Cards */
+.card { @apply bg-white rounded-lg shadow-sm border; border-color: var(--glide-border); }
+.card-header { @apply px-4 py-5 sm:px-6 border-b; border-color: var(--glide-border); }
+.card-body { @apply p-4 sm:p-6; }

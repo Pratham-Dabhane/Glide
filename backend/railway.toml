@@ -25,7 +25,7 @@ interval = 60
   restartPolicyMaxRetries = 10
 
 [networking]
-  serviceName = "zapier-debugger-backend"
+  serviceName = "glide-backend"
   
 # Environment variables to set in Railway dashboard:
 # - CLERK_SECRET_KEY

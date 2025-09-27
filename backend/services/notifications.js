@@ -55,7 +55,7 @@ class NotificationService {
                 short: true
               }
             ],
-            footer: 'Zapier Debugger & Monitor',
+            footer: 'Glide — Debug. Monitor. Automate.',
             ts: Math.floor(Date.now() / 1000)
           }
         ]
@@ -89,7 +89,7 @@ class NotificationService {
         return false
       }
 
-      const fromEmail = process.env.FROM_EMAIL || 'noreply@zapier-debugger.com'
+  const fromEmail = process.env.FROM_EMAIL || 'noreply@glideapp.io'
 
       const mailOptions = {
         from: fromEmail,
@@ -172,7 +172,7 @@ class NotificationService {
         </head>
         <body>
           <div class="header">
-            <h1>🚨 Zapier Workflow Alert</h1>
+            <h1>🚨 Workflow Alert</h1>
           </div>
           <div class="content">
             <div class="alert-box">
@@ -197,7 +197,7 @@ class NotificationService {
             </ul>
           </div>
           <div class="footer">
-            <p>This email was sent by Zapier Debugger & Monitor</p>
+            <p>This email was sent by Glide</p>
             <p>Generated at: ${new Date().toLocaleString()}</p>
           </div>
         </body>
@@ -215,7 +215,7 @@ class NotificationService {
     if (slackWebhookUrl) {
       results.slack = await this.sendSlackNotification(
         slackWebhookUrl,
-        '🧪 Test Notification from Zapier Debugger',
+        '🧪 Test Notification from Glide',
         'This is a test message to verify your Slack integration is working correctly. If you received this message, your setup is successful!',
         'good'
       )
@@ -225,8 +225,8 @@ class NotificationService {
     if (alertEmail) {
       results.email = await this.sendEmailNotification(
         alertEmail,
-        '🧪 Test Email from Zapier Debugger',
-        'This is a test email to verify your email integration is working correctly.\n\nIf you received this message, your email setup is successful!\n\nBest regards,\nZapier Debugger & Monitor Team'
+        '🧪 Test Email from Glide',
+        'This is a test email to verify your email integration is working correctly.\n\nIf you received this message, your email setup is successful!\n\nBest regards,\nGlide Team'
       )
     }
 

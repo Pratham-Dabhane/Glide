@@ -1,5 +1,7 @@
 const express = require('express')
 const cors = require('cors')
+const helmet = require('helmet')
+const morgan = require('morgan')
 const { createClient } = require('@supabase/supabase-js')
 const { clerkClient } = require('@clerk/clerk-sdk-node')
 const cron = require('node-cron')
@@ -13,8 +15,22 @@ const app = express()
 const port = process.env.PORT || 5000
 
 // Middleware
+// Security headers and logging
+app.use(helmet())
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'))
+
+// CORS with allowlist support via FRONTEND_URL and CORS_ORIGINS (comma-separated)
+const allowlist = [
+  process.env.FRONTEND_URL || 'http://localhost:3000',
+  ...(process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',').map(o => o.trim()) : [])
+].filter(Boolean)
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true)
+    if (allowlist.includes(origin)) return callback(null, true)
+    return callback(new Error('Not allowed by CORS'))
+  },
   credentials: true
 }))
 app.use(express.json({ limit: '10mb' }))
@@ -81,7 +97,8 @@ app.get('/health', (req, res) => {
     status: 'OK', 
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
+    service: 'glide-backend'
   })
 })
 
@@ -237,7 +254,7 @@ app.post('/api/integrations/test-slack', authenticateUser, async (req, res) => {
 
     const ok = await notificationService.sendSlackNotification(
       webhook_url,
-      '🧪 Test Notification from Zapier Debugger',
+      '🧪 Test Notification from Glide',
       'This is a test message to verify your Slack integration is working correctly.',
       'good'
     )
@@ -276,12 +293,9 @@ app.post('/api/integrations/test-zapier', authenticateUser, async (req, res) => 
 // ==================== WORKFLOW ROUTES ====================
 
 // Get user's workflows
-app.get('/api/workflows', async (req, res) => {
+app.get('/api/workflows', authenticateUser, async (req, res) => {
   try {
-    const authHeader = req.headers.authorization
-    const token = authHeader?.replace('Bearer ', '')
-    
-    if (token === 'demo-token') {
+    if (req.user?.isDemoMode) {
       // Return demo workflows
       return res.json([
         {
@@ -327,7 +341,7 @@ app.get('/api/workflows', async (req, res) => {
     const { data: integration } = await supabase
       .from('integrations')
       .select('zapier_api_key')
-      .eq('user_id', req.user?.id || '')
+  .eq('user_id', req.user.id)
       .single()
 
     if (!integration?.zapier_api_key) {
@@ -343,14 +357,12 @@ app.get('/api/workflows', async (req, res) => {
 })
 
 // Get workflow runs/logs
-app.get('/api/workflows/:workflowId/runs', async (req, res) => {
+app.get('/api/workflows/:workflowId/runs', authenticateUser, async (req, res) => {
   try {
     const { workflowId } = req.params
     const { limit = 50, offset = 0 } = req.query
-    const authHeader = req.headers.authorization
-    const token = authHeader?.replace('Bearer ', '')
     
-    if (token === 'demo-token') {
+    if (req.user?.isDemoMode) {
       // Return demo workflow runs
       const demoRuns = []
       for (let i = 0; i < parseInt(limit); i++) {
@@ -385,12 +397,9 @@ app.get('/api/workflows/:workflowId/runs', async (req, res) => {
 // ==================== MONITORING ROUTES ====================
 
 // Get monitoring status
-app.get('/api/monitoring/status', async (req, res) => {
+app.get('/api/monitoring/status', authenticateUser, async (req, res) => {
   try {
-    const authHeader = req.headers.authorization
-    const token = authHeader?.replace('Bearer ', '')
-    
-    if (token === 'demo-token') {
+    if (req.user?.isDemoMode) {
       return res.json({
         enabled: true,
         last_check: new Date(Date.now() - 1000 * 60 * 5).toISOString(), // 5 minutes ago
@@ -405,7 +414,7 @@ app.get('/api/monitoring/status', async (req, res) => {
     const { data: integration } = await supabase
       .from('integrations')
       .select('*')
-      .eq('user_id', req.user?.id || '')
+  .eq('user_id', req.user.id)
       .single()
 
     if (!integration) {
@@ -424,12 +433,9 @@ app.get('/api/monitoring/status', async (req, res) => {
 })
 
 // Manual workflow check
-app.post('/api/monitoring/check', async (req, res) => {
+app.post('/api/monitoring/check', authenticateUser, async (req, res) => {
   try {
-    const authHeader = req.headers.authorization
-    const token = authHeader?.replace('Bearer ', '')
-    
-    if (token === 'demo-token') {
+    if (req.user?.isDemoMode) {
       return res.json({
         success: true,
         message: 'Demo mode: Manual check completed',
@@ -438,7 +444,7 @@ app.post('/api/monitoring/check', async (req, res) => {
       })
     }
 
-  const result = await monitoringService.checkAllWorkflows(req.user?.id)
+  const result = await monitoringService.checkAllWorkflows(req.user.id)
     res.json({
       success: true,
       ...result
@@ -452,13 +458,11 @@ app.post('/api/monitoring/check', async (req, res) => {
 // ==================== ALERT ROUTES ====================
 
 // Get alert history
-app.get('/api/alerts', async (req, res) => {
+app.get('/api/alerts', authenticateUser, async (req, res) => {
   try {
     const { limit = 50, offset = 0 } = req.query
-    const authHeader = req.headers.authorization
-    const token = authHeader?.replace('Bearer ', '')
     
-    if (token === 'demo-token') {
+    if (req.user?.isDemoMode) {
       const demoAlerts = [
         {
           id: 'demo-alert-1',
@@ -487,7 +491,7 @@ app.get('/api/alerts', async (req, res) => {
     const { data, error } = await supabase
       .from('alert_history')
       .select('*')
-      .eq('user_id', 'user-id')
+  .eq('user_id', req.user.id)
       .order('sent_at', { ascending: false })
       .range(parseInt(offset), parseInt(offset) + parseInt(limit) - 1)
 

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "zapier-debugger-backend", 
+  "name": "glide-backend", 
   "builds": [
     {
       "src": "index.js",

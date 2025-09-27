@@ -1,6 +1,6 @@
-# Zapier Debugger & Monitor 🔍⚡
+# Glide — Debug. Monitor. Automate. 🔍⚡
 
-A comprehensive SaaS application for monitoring and debugging Zapier workflows with real-time alerts and notifications.
+Glide is a micro‑SaaS for monitoring and debugging automation workflows with real-time alerts and notifications.
 
 ## 🚀 Features
 
@@ -37,7 +37,7 @@ A comprehensive SaaS application for monitoring and debugging Zapier workflows w
 ## 📁 Project Structure
 
 ```
-zapier-debugger/
+glide/
 ├── frontend/                 # Next.js frontend application
 │   ├── app/                 # Next.js 13+ app directory
 │   │   ├── dashboard/       # Dashboard pages
@@ -86,7 +86,7 @@ zapier-debugger/
 
 ```bash
 git clone <repository-url>
-cd zapier-debugger
+cd glide
 ```
 
 ### 2. Setup Backend

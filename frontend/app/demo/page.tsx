@@ -102,10 +102,10 @@ export default function DemoDashboard() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link href="/" className="text-xl font-bold text-gray-900 mr-8">
-                Zapier Debugger
+                Glide
               </Link>
               <nav className="hidden sm:flex sm:space-x-8">
-                <span className="border-b-2 border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
+                <span className="border-b-2 border-blue-600 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium">
                   Dashboard
                 </span>
                 <span className="border-transparent text-gray-500 inline-flex items-center px-1 pt-1 text-sm font-medium">
@@ -141,7 +141,7 @@ export default function DemoDashboard() {
               <div className="ml-3">
                 <h3 className="text-sm font-medium text-blue-800">Demo Dashboard</h3>
                 <div className="mt-2 text-sm text-blue-700">
-                  <p>This is a demonstration of the Zapier Debugger dashboard with sample data. To access real workflow monitoring, you'll need to sign up and connect your Zapier API key.</p>
+                  <p>This is a demonstration of the Glide dashboard with sample data. To access real workflow monitoring, you'll need to sign up and connect your Zapier API key.</p>
                 </div>
               </div>
             </div>
@@ -235,7 +235,7 @@ export default function DemoDashboard() {
                   <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                     <button
                       type="button"
-                      className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
                       <RefreshCw className="w-4 h-4 mr-2" />
                       Refresh

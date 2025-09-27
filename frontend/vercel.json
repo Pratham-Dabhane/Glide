@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "zapier-debugger-frontend",
+  "name": "glide-frontend",
   "framework": "nextjs",
   "installCommand": "npm install",
   "buildCommand": "npm run build",
